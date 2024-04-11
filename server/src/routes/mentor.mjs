@@ -1,19 +1,20 @@
 import { Router } from 'express';
-import { createMentor, updateMentor, patchMentor, deleteMentor, getMentors } from '../controllers/mentor.controller.mjs';
+import { createMentor, updateMentor, patchMentor, deleteMentor, getMentors} from '../controllers/mentor.controller.mjs';
 import { createValidationSchema, updateValidationSchema } from '../utils/validationSchemas.mjs';
-import { checkSchema } from 'express-validator';
+import { checkSchema } from "express-validator";
+
 
 
 const router = Router();
 
 router.get('/mentors', getMentors);
 
-router.post('/create-mentor', checkSchema(createValidationSchema),createMentor);
+router.post('/create-mentor', checkSchema(createValidationSchema), createMentor);
 
 router.put('/mentors/:id', checkSchema(updateValidationSchema),updateMentor);
 
-router.patch('/mentors/:id', checkSchema(updateValidationSchema),patchMentor);
+router.patch('/mentors/:id', checkSchema(updateValidationSchema), patchMentor);
 
-router.patch('/mentors/:id', deleteMentor);
+router.delete('/mentors/:id', deleteMentor);
 
 export default router;

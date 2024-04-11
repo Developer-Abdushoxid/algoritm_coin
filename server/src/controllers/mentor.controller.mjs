@@ -1,13 +1,14 @@
-import { validationResult, matchedData } from 'express-validator';
-import { Mentor } from '../models/mentor.model.mjs';
-import { hashedPassword } from '../utils/helpers.mjs';
- 
-export const GetMentors = async (req,res) => {
-    try{
-        const mentors = await Mentor.find();
+import { validationResult, matchedData } from "express-validator";
+import { Mentor } from "../models/mentor.model.mjs";
+import { hashedPassword } from "../utils/helpers.mjs";
+
+
+export const getMentors = async (req, res)=> {
+    try {
+        const mentors =  await Mentor.find();
         if (!mentors) return res.sendStatus(404);
         return res.status(200).send(mentors);
-    } catch (error) {
+    }catch (error){
         console.log(error);
         return res.sendStatus(404);
     }
@@ -20,54 +21,52 @@ export const createMentor = async (req, res) => {
 
     data.password = hashedPassword(data.password);
     const newMentor = new Mentor(data);
+
     try{
         const savedMentor = await newMentor.save();
         return res.status(201).send(savedMentor);
-    } catch (error) {
+    }catch (error) {
         console.log(error);
-        return res.sendStatus(400)
+        return res.sendStatus(400);
     }
 };
 
 export const updateMentor = async (req, res) => {
-    const { params: {id} } = req;
+    const {params: {id} } = req;
     const result = validationResult(req);
     if (!result.isEmpty()) return res.status(400).send(result.array());
     const data = matchedData(req);
-    try{
-        const updateMentor = await Mentor.finByIdAndUpdate(id, data, {new : true});
 
+    try{
+        const updateMentor = await Mentor.findByIdAndUpdate(id, data, {new: true});
         if (!updateMentor) throw new Error('User Not Found');
-        return res.status(200).send(updateMentor);
-    } catch (error) {
-        return res.status(500)
+    }catch (error) {
+        return res.status(500);
     }
 };
 
-export const patchMentor = async (req, res) => {
+export const patchMentor = async ( req, res) => {
     const { params: {id} } = req;
     const result = validationResult(req);
-    if (!result.isEmpty()) return res.status(400).send(result.array());
+    if(!result.isEmpty()) return res.status(400).send(result.array());
     const data = matchedData(req);
-    try{
-        const updateMentor = await Mentor.finByIdAndUpdate(id, data, {new : true});
-
-        if (!updateMentor) return res.status(404).send('Mentor Not Found');
+    try {
+        const updateMentor = await Mentor.findByIdAndUpdate(id, data, {new: true});
+        if(!updateMentor) return res.status(404).send('Mentor not found');
         return res.status(200).send(updateMentor);
-    } catch (error) {
-        return res.status(500)
+    }catch (error) {
+        return res.status(500);
     }
 };
-
-export const deleteMentor = async (req, res) => {
-    const { params: {id} } = req;
-
-    try{
-        const deleteMentor = await Mentor.finByIdAndUpdate(id);
+export const deleteMentor = async (req, res) =>{
+    const {params: {id} } = req;
+    try {
+        const deleteMentor = await Mentor.findByIdAndDelete(id);
         if (!deleteMentor) return res.status(404);
-        return res.status(200).send('Mentor deleted');
-    } catch (error) {
-        return res.status(500)
+        return res.status(204).send('Mentor deleted');
+    }catch ( error){
+        return res.status(500);
     }
 };
+
 

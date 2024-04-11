@@ -1,13 +1,12 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+
 dotenv.config();
 
-
-mongoose.connect(process.env.MONGO_URL,
+mongoose.connect(process.env.MONGODB_URL,
     {
         useNewUrlParser: true,
         useUnifiedTopology: true
     })
-
-    .then(() => console.log ('Connected Successfully'))
-    .catch(() => console.log (err))
+    .then(() => console.log('Connected Successfully'))
+    .catch((err) => console.log(err))

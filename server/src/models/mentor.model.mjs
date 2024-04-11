@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+import { Schema, model } from "mongoose"
 
 const MentorSchema = new Schema({
     username: {
@@ -6,20 +6,20 @@ const MentorSchema = new Schema({
         required: true,
         trim: true,
     },
-    displayNmae: {
+    displayName: {
         type: String,
         trim: true,
     },
     phoneNumber: {
         type: Number,
-        required: true,
         trim: true,
+        required: true,
     },
     password: {
         type: String,
         required: true,
-        trim: true,
+        trim: true
     },
-},{ timestamps: true});
+}, {timestamps: true})
 
 export const Mentor = model('mentor', MentorSchema)
