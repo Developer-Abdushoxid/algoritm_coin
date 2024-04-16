@@ -8,7 +8,6 @@ export const getPupils = async (req, res)=> {
         if (!Pupils) return res.sendStatus(404);
         return res.status(200).send(Pupils);
     }catch (error){
-        console.log(error);
         return res.sendStatus(404);
     }
 };

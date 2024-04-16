@@ -1,6 +1,6 @@
 import { validationResult, matchedData } from "express-validator";
-import { Mentor } from "../../models/mentor.model.mjs";
-import { hashedPassword } from "../../utils/helpers.mjs";
+import { Mentor } from "../models/mentor.model.mjs";
+import { hashedPassword } from "../utils/helpers.mjs";
 
 
 export const getMentors = async (req, res)=> {
