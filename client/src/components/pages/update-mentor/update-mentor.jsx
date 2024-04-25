@@ -1,9 +1,9 @@
 import React from 'react'
 
-const updateMentor = () => {
+const UpdateMentor = () => {
   return (
-    <div>update Mentor</div>
+    <div>Update Mentor</div>
   )
 }
 
-export default updateMentor
+export default UpdateMentor
