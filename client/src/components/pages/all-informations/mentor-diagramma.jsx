@@ -6,6 +6,7 @@ import {
 } from "@material-tailwind/react";
 import Chart from "react-apexcharts";
 import { Square3Stack3DIcon } from "@heroicons/react/24/outline";
+import { memo } from "react";
  
 // If you're using Next.js please use the dynamic import for react-apexcharts and remove the import from the top for the react-apexcharts
 // import dynamic from "next/dynamic";
@@ -17,7 +18,7 @@ const chartConfig = {
   series: [
     {
       name: "Sales",
-      data: [70, 500, 300, 700, 400, 550, 220, 430, 800],
+      data: [50, 40, 300, 320, 500, 350, 200, 230, 500],
     },
   ],
   options: {
@@ -100,7 +101,7 @@ const chartConfig = {
   },
 };
  
-export default function MentorDiagramma() {
+const MentorDiagramma = () => {
   return (
     <Card className="col-span-2">
       <CardHeader
@@ -132,3 +133,5 @@ export default function MentorDiagramma() {
     </Card>
   );
 }
+
+export default memo(MentorDiagramma)

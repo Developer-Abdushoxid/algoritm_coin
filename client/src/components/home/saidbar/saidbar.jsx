@@ -33,7 +33,7 @@ const Saidbar = () => {
           }
         </div>
         <div className="px-4">
-          <div className="flex items-center justify-center gap-4 bg-green-700 rounded-md py-2">
+          <div className="flex items-center justify-center gap-4 bg-indigo-700 rounded-md py-2">
             {user 
               ? <img src={User} alt="user" className="w-10 h-10 rounded-full object-cover"/>
               : <h2 className="w-10 h-10 rounded-full p-2 bg-slate-300 text-slate-800 font-bold">JS</h2>

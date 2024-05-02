@@ -35,10 +35,12 @@ export const cards = [
   {
     title: "Mentors",
     icon: FaChalkboardTeacher,
+    count: 115
   },
   {
     title: "Pupils",
     icon: PiStudentBold,
+    count: 1234
   },
 ];
 
