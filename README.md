@@ -1,1 +1,0 @@
-# algoritm_coin
