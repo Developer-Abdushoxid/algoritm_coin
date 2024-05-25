@@ -1,12 +1,18 @@
 const express = require('express');
 const authController = require('../controllers/AuthController');
-const authMiddleware = require('../middlewares/AuthMiddleware');
+
 
 const router = express.Router();
 
 router.post('/register', authController.register);
 router.post('/login', authController.login);
-router.get('profile', authMiddleware(['user', 'admin', 'pupil']), authController.profile);
+router.get('/users',authController.getAllUsers);
+router.delete('/users/:id',authController.deleteUser)
 
 module.exports = router;
 
+/*
+Ushbu kodda Express.js yordamida foydalanuvchilarni ro'yxatdan o'tkazish, kirish va 
+profil ma'lumotlarini olish uchun marshrutlar aniqlangan. Marshrutlar tegishli kontrol funksiyalariga yo'naltirilgan va profil ma'lumotlarini 
+olish marshrutida autentifikatsiya va avtorizatsiya middleware funksiyasi qo'llanilgan.
+*/

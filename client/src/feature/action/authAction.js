@@ -1,17 +1,17 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "../../service/api";
+import instance from "../../service/api";
 import { signUserFailure, signUserSuccess } from './../../feature/user/authSlice';
 
 
 // API endpoints
-const REGISTER_ENDPOINT = `/register`;
-const LOGIN_ENDPOINT = `/login`;
-const LOGOUT_ENDPOINT = `/logout`;
-const GETUSERS_ENDPOINT = `/users`;
+const REGISTER_ENDPOINT = `/auth/register`;
+const LOGIN_ENDPOINT = `/auth/login`;
+// const LOGOUT_ENDPOINT = `/auth/logout`;
+const GETUSERS_ENDPOINT = `/auth/users`;
 
 export const getAllUsers = createAsyncThunk('auth/users', async () => {
   try {
-    const { data } = await axios.get(GETUSERS_ENDPOINT);
+    const { data } = await instance.get(GETUSERS_ENDPOINT);
     return data;
   } catch (error) {
     // Handle error (e.g., log it, dispatch an action, etc.)
@@ -22,7 +22,7 @@ export const getAllUsers = createAsyncThunk('auth/users', async () => {
 
 export const registerUser = createAsyncThunk("auth/register", async (userData, { dispatch }) => {
   try {
-    const { data } = await axios.post(REGISTER_ENDPOINT, userData);
+    const { data } = await instance.post(REGISTER_ENDPOINT, userData);
     // Foydalanuvchi ro'yxatdan o'tgan bo'lsa
     dispatch(signUserSuccess(data));
     return data;
@@ -36,7 +36,7 @@ export const registerUser = createAsyncThunk("auth/register", async (userData, {
 
 export const loginUser = createAsyncThunk("auth/login", async (userData, { dispatch }) => {
   try {
-    const { data } = await axios.post(LOGIN_ENDPOINT, userData);
+    const { data } = await instance.post(LOGIN_ENDPOINT, userData);
     dispatch(signUserSuccess(data))
     return data;
   } catch (error) {
@@ -46,14 +46,14 @@ export const loginUser = createAsyncThunk("auth/login", async (userData, { dispa
   }
 });
 
-export const logoutUser = createAsyncThunk("auth/logout", async ({ dispatch }) => {
-  try {
-    const { data } = await axios.post(LOGOUT_ENDPOINT);
-    dispatch(signUserSuccess(data))
-    return data;
-  } catch (error) {
-    const errorMessage = error.message ? error.response.data.message : 'Server error';
-    dispatch(signUserFailure(errorMessage))
-    throw error;
-  }
-});
+// export const logoutUser = createAsyncThunk("auth/logout", async ({ dispatch }) => {
+//   try {
+//     const { data } = await instance.post(LOGOUT_ENDPOINT);
+//     dispatch(signUserSuccess(data))
+//     return data;
+//   } catch (error) {
+//     const errorMessage = error.message ? error.response.data.message : 'Server error';
+//     dispatch(signUserFailure(errorMessage))
+//     throw error;
+//   }
+// });

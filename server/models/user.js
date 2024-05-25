@@ -19,7 +19,7 @@ const User = sequelize.define('User', {
     },
     role: {
         type: DataTypes.ENUM('user','admin','pupil'),
-        defaultValue: 'user',
+        defaultValue: 'admin',
     },
 },{
     hooks:{
@@ -31,3 +31,9 @@ const User = sequelize.define('User', {
 });
 
 module.exports = User
+
+/*
+Ushbu kod User modelini Sequelize yordamida ta'riflaydi. Modelda username, email, password, va role xossalari mavjud. 
+beforeCreate hook yordamida yangi foydalanuvchi yaratilishidan oldin parol hash qilinadi, bu foydalanuvchi xavfsizligini ta'minlaydi. 
+Model eksport qilinadi va boshqa joylarda foydalanish uchun tayyor bo'ladi.
+*/
