@@ -20,7 +20,7 @@ exports.login = async (email, password) => {
     if(!isMatch) throw new Error('Invalid email or password');
 
     const token = jwt.generateToken(user.id);
-    return token;
+    return {token, user};
 };
 
 /*

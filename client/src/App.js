@@ -1,17 +1,22 @@
-import { HomePage, Login } from "./components";
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route,Navigate } from 'react-router-dom';
+import {useSelector } from 'react-redux';
+import { HomePage, Login, Register} from "./components";
+
+
 
 const App = () => {
 
-  const user = true;
+  const {user} = useSelector(state => state.auth);
 
-  if(user) return <HomePage/>;
   return (
-        <>
+        <div className='flex items-center justify-center h-screen'>
           <Routes>
-            <Route path="/" element={<Login/>}/>
+            <Route path="/login" element={<Login/>}/>
+            <Route path="/register" element={<Register/>}/>
+            <Route path="/" element={<HomePage/>}/>
+            <Route path="*" element={user ? <Navigate to="/"/> : <Navigate to="/login"/>}/>
           </Routes>
-        </>
+        </div>
   )
 }
 

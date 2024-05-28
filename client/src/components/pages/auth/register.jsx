@@ -8,6 +8,7 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../../../feature/action/authAction";
+import { useState } from "react";
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ const Register = () => {
       password: '',
   });
 
-  const { error, isLoading, } = useSelector(state => state.auth);
+  const { error, isLoading, loggedIn} = useSelector(state => state.auth);
 
   const handleChange = (e) => {
       setFormData({
@@ -29,10 +30,12 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
       e.preventDefault();
-      dispatch(registerUser(formData))
+      dispatch(registerUser(formData));
+      if (loggedIn === true){
+        navigate(`/`)
+      }
   }
 
-}
 return (
   <Card color="transparent" shadow={false}>
       <Typography variant="h4" color="blue-gray">
@@ -48,7 +51,7 @@ return (
               </Typography>
               <Input
                   size="lg"
-                  placeholder="name@mail.com"
+                  placeholder="Username"
                   className="border-t-blue-gray-200 focus:border-t-gray-900"
                   labelProps={{
                       className: "before:content-none after:content-none",
@@ -102,5 +105,6 @@ return (
       </form>
   </Card>
 );
+};
 
 export default Register;

@@ -28,7 +28,12 @@ exports.register = [
 
         const { username, email, password} = req.body;
         try {
-            const user = await authService.register(username, email, password);
+            const {user, token} = await authService.register(username, email, password);
+            res.cookie('token', token, {
+                maxAge:900000,
+                httpOnly: true,
+                secure: process.env.NODE_ENV === 'production',
+            });
             res.status(201).json({ message: 'Registraction succesfull', user });
         } catch(err){
             res.status(400).json({ error: err.message });
@@ -46,13 +51,27 @@ exports.login = [
 
         const { email, password } = req.body;
         try{
-            const token = await authService.login(email, password);
-            res.json({message: 'Login succesfull', token });
+            const {token, user} = await authService.login(email, password);
+            res.cookie('token', token, {
+                maxAge:900000,
+                httpOnly: true,
+                secure: process.env.NODE_ENV === 'production',
+            });
+            res.status(200).json({message: 'Login succesfull', user});
         }catch(err) {
             res.status(400).json({ error: err.message });
         }
     }
 ];
+
+exports.logout = async (req, res) => {
+try{
+    res.clearCookie('token');
+    res.status(200).json({message: 'Logout succesfull'});   
+}catch(error) {
+    res.status(500).json({ error: 'Error logging out'});
+}
+};
 
 exports.deleteUser = async (req, res) => {
     const { id } = req.params;
