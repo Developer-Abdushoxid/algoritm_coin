@@ -19,14 +19,14 @@ export const ThemeProvider = ({ children }) => {
 
   const handleDarkMode = useCallback (() => {
     setDarkMode(prevMode => !prevMode);
-  },[darkMode]);
+  }, [darkMode]);
 
   
   const handleSearch = useCallback( (e) => {
     setTimeout(
-      setSearchTerm(e.target.value),500
+      setSearchTerm(e.target.value), 500
     )
-  },[searchTerm]);
+  }, [searchTerm]);
 
   const filteredData = mentors.filter((item) =>
     Object.values(item).some(

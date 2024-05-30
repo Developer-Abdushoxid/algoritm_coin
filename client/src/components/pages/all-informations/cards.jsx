@@ -1,7 +1,6 @@
 import { Carousel } from "@material-tailwind/react";
-import { memo } from "react";
  
-const CarouselCard = () => {
+export function CarouselCard() {
   return (
     <Carousel
       autoplay={true}
@@ -41,5 +40,3 @@ const CarouselCard = () => {
     </Carousel>
   );
 }
-
-export default memo(CarouselCard)

@@ -1,16 +1,15 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { Card, Typography, Input,  IconButton,
-  Tooltip,Avatar,Button } from "@material-tailwind/react";
+  Tooltip, Button, Avatar} from "@material-tailwind/react";
 import { MagnifyingGlassIcon, PencilIcon, TrashIcon } from "@heroicons/react/24/outline";
 import { useTheme } from '../../../helpers/context';
-import { UpdatePage } from '../../../assets';
+import { UpdatePage } from '../../../assets/';
 
- 
 const TABLE_HEAD = ["UserName", "Phone Number", "Date", "Edits", "Deleted"];
- 
+
 const UpdateMentor = () => {
 
-    const mentorInfo = true;
+  const mentorInfo = false;
 
   const { handleSearch} = useTheme();
   return (
@@ -26,36 +25,33 @@ const UpdateMentor = () => {
       </div>
       </div>
       <div className='col-span-3 row-span-9'><MentorsTable/></div>
-      <div className='col-span-3 row-span-6 rounded-lg border-[1px] border-gray-300'>
+      <div className='col-span-3 row-span-6 rounded-lg border-[1px] border-gray-300 p-8'>
         {mentorInfo 
         ? 
         <div className='rounded-lg w-full h-full flex items-center justify-start pt-10 flex-col gap-4'>
           <Avatar src="https://docs.material-tailwind.com/img/face-2.jpg" alt="avatar" size="xxl" />
-        <form className='flex flex-col gap-2'>
-          <div className="w-72 flex flex-col items-center gap-4">
-            <Input label="Fullname" value={'Abdushoxid Bannayev'} color='white'/>
-            <Input label="Phone Number" value={"+99890 122 0000"} color='white'/>
-          </div>
-          <div className="w-72 flex justify-between mt-4">
-            <Button variant="gradient">cancel</Button>
-            <Button color="indigo">save</Button>
-          </div>
-        </form>
+          <form className='flex flex-col gap-2'>
+            <div className="w-72 flex flex-col items-center gap-4">
+              <Input label="Fullname" value={'Abdushoxid Bannayev'} color='white'/>
+              <Input label="Phone Number" value={"+99890 122 0000"} color='white'/>
+            </div>
+            <div className="w-72 flex justify-between mt-4">
+              <Button variant="gradient">cancel</Button>
+              <Button color="indigo">save</Button>
+            </div>
+          </form>
         </div>
-        :
-        <div>
-          <h1 className='text-white tracking-wide text-xl p-6'>Ma'lumotlarni o'zgartirmoqchi bo'lgan Mentorni tanlang</h1>
-        <img src={UpdatePage} alt="update image" className='object-cover w-96 h-96 ml-[100px]'/>
+        :<div>
+          <h2 className='text-white tracking-wide text-xl'>Ma'lumotlarini o'zgartirmoqchi bo'lgan Mentorni tanlang </h2>
+          <img src={UpdatePage} alt="update image" className='object-cover w-96 h-96 ml-10'/>
         </div>
       }
       </div>
-
-      
     </div>
   )
 }
 
-export default UpdateMentor
+export default memo(UpdateMentor)
  
 function MentorsTable() {
   const {filteredData} = useTheme();

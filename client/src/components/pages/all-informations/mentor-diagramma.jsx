@@ -134,4 +134,4 @@ const MentorDiagramma = () => {
   );
 }
 
-export default memo(MentorDiagramma)
+export default memo(MentorDiagramma);

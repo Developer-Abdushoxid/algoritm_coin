@@ -11,7 +11,7 @@ export const dataMenu = [
   {
     icon: SiHomeassistant,
     title: "ALL Information",
-    link: '/all-info',
+    link: '/',
   },
   {
     icon: MdOutlineGroupAdd,
@@ -35,13 +35,13 @@ export const cards = [
   {
     title: "Mentors",
     icon: FaChalkboardTeacher,
-    count: 115
+    count: 117
   },
   {
     title: "Pupils",
     icon: PiStudentBold,
-    count: 1234
-  },
+    count: 1256
+  }
 ];
 
 export const categories = [
