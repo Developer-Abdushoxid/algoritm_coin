@@ -51,3 +51,8 @@ export const logout = createAsyncThunk("auth/logout", async (_, { dispatch }) =>
     return handleApiError(error, dispatch, signUserFailure);
   }
 });
+
+
+
+
+// Umuman olganda, bu kod autentifikatsiya jarayonlari (foydalanuvchini ro'yxatdan o'tkazish, tizimga kiritish va tizimdan chiqarish) uchun asinxron thunk funksiyalarini yaratadi va xatoliklarni boshqarish uchun yordamchi funksiyani ishlatadi.

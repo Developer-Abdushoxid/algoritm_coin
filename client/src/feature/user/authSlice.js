@@ -34,3 +34,10 @@ export const authSlice = createSlice({
 
 export const { signUserStart, signUserFailure, signUserSuccess, logoutUser } = authSlice.actions;
 export default authSlice.reducer;
+
+
+
+
+// Umuman olganda, bu kod foydalanuvchi autentifikatsiya jarayonini boshqarish uchun ishlatiladigan 
+// Redux slice yaratadi. Bu jarayonda foydalanuvchini tizimga kirishi, muvaffaqiyatli kirishi,
+// kirishda xato va tizimdan chiqishi kabi holatlar boshqariladi.

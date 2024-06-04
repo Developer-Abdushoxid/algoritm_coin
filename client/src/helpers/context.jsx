@@ -45,3 +45,9 @@ export const ThemeProvider = ({ children }) => {
 
 // Komponentlarga murojaat
 export const useTheme = () => useContext(ThemeContext);
+
+
+
+// ThemeContext yaratiladi va u orqali qidiruv maydoni va tungi rejim (dark mode) holati boshqariladi.
+// ThemeProvider komponenti bu holatlarni boshqaradi va bolalar komponentlariga uzatadi.
+// useTheme xooki orqali boshqa komponentlar ThemeContext ma'lumotlariga kirish imkoniyatiga ega bo'ladi.
